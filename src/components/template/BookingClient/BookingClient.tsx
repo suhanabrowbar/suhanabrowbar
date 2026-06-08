@@ -53,7 +53,7 @@ const services = [
 ];
 
 const bodyWaxingServices = [
-  { name: 'Eyebrows', price: '$15', duration: '10–15 min' },
+  { name: 'Eyebrows', price: '$18', duration: '10–15 min' },
 
   { name: 'Side Burns', price: '$12', duration: '10 min' },
 
@@ -63,29 +63,29 @@ const bodyWaxingServices = [
 
   { name: 'Underarms', price: '$20', duration: '10–15 min' },
 
-  { name: 'Full Arms', price: '$45', duration: '30–45 min' },
+  { name: 'Full Arms', price: '$40', duration: '30–45 min' },
 
   { name: 'Half Arms', price: '$30', duration: '20–30 min' },
 
-  { name: 'Upper Legs', price: '$40', duration: '25–35 min' },
+  { name: 'Upper Legs', price: '$35', duration: '25–35 min' },
 
-  { name: 'Lower Legs', price: '$35', duration: '20–30 min' },
+  { name: 'Lower Legs', price: '$30', duration: '20–30 min' },
 
-  { name: 'Full Legs', price: '$70', duration: '45–60 min' },
+  { name: 'Full Legs', price: '$65', duration: '45–60 min' },
 
-  { name: 'Stomach', price: '$25', duration: '15–25 min' },
+  { name: 'Stomach', price: '$30', duration: '15–25 min' },
 
-  { name: 'Back', price: '$50', duration: '25–40 min' },
+  { name: 'Back', price: '$40', duration: '25–40 min' },
 ];
 
 const facialTreatmentServices = [
-  { name: 'Deep Cleansing Facial', price: '$85', duration: '60–90 min' },
+  { name: 'Deep Cleansing Facial', price: '$100', duration: '60–90 min' },
 
   { name: 'Teen Facial', price: '$55', duration: '30–45 min' },
 
-  { name: 'Purifying Back Facial', price: '$75', duration: '45–60 min' },
+  { name: 'Purifying Back Facial', price: '$60', duration: '45–60 min' },
 
-  { name: 'Microdermabrasion Facial', price: '$110', duration: '60–90 min' },
+  { name: 'Microdermabrasion Facial', price: '$115', duration: '60–90 min' },
 
   { name: 'Glow Renewal Peel', price: '$95', duration: '45–60 min' },
 
