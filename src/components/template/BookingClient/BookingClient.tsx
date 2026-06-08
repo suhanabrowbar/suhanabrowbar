@@ -724,3 +724,4 @@ export default function BookingClient() {
     </section>
   );
 }
+ 
