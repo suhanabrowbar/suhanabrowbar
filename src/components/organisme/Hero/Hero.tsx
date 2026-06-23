@@ -41,6 +41,9 @@ const Hero = () => {
 
           <span className="mt-6 block text-xs tracking-[0.25em] uppercase text-[#f5d8cc]/85">
             Threading • Brow Shaping • Brow Tinting • Waxing • Facials
+            <p className="mt-4 text-sm text-[#fff7f2]/80 font-bold">
+              Please note: Services are available exclusively to female clients
+            </p>
           </span>
           <HeroScrollActions />
         </div>

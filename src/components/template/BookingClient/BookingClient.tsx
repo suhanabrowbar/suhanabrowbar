@@ -664,6 +664,16 @@ export default function BookingClient() {
 
           <motion.div
             variants={fadeUp}
+            className="mt-8 mx-auto max-w-3xl rounded-2xl border border-amber-200 bg-amber-50 p-4 text-center"
+          >
+            <p className="text-sm font-medium text-[#5c3420]">
+              Please Note: Services are provided exclusively to female clients.
+              Male appointments are not accepted.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
             whileHover={shouldReduceMotion ? {} : { y: -4 }}
             className="mt-14 rounded-3xl overflow-hidden border shadow-lg"
           >
@@ -724,4 +734,3 @@ export default function BookingClient() {
     </section>
   );
 }
- 
