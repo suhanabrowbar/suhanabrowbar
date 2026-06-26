@@ -1,102 +1,72 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { X, ChevronRight, ChevronLeft } from 'lucide-react';
 
-// Replace with real brand images
-import BrowThreading1 from '../../../../public/images/Gallery 1.webp';
-import BrowShaping1 from '../../../../public/images/Gallery 2.webp';
-import BrowTint1 from '../../../../public/images/Gallery 3.webp';
-import Studio1 from '../../../../public/images/Gallery 4.webp';
-import BrowThreading2 from '../../../../public/images/Gallery 4.webp';
-import BrowShaping2 from '../../../../public/images/Gallery 4.webp';
+import Image1 from '../../../../public/images/gallery/image1.webp';
+import Image2 from '../../../../public/images/gallery/image2.webp';
+import Image3 from '../../../../public/images/gallery/image3.webp';
+import Image4 from '../../../../public/images/gallery/image4.webp';
+import Image5 from '../../../../public/images/gallery/image5.webp';
 
 interface GalleryItem {
   id: number;
   image: StaticImageData;
   title: string;
-  category: 'Threading' | 'Brow Shaping' | 'Tinting' | 'Studio';
   span?: string;
 }
-
-const categories = [
-  'All',
-  'Threading',
-  'Brow Shaping',
-  'Tinting',
-  'Studio',
-] as const;
 
 const galleryData: GalleryItem[] = [
   {
     id: 1,
-    image: BrowThreading1,
-    title: 'Precision Brow Threading',
-    category: 'Threading',
+    image: Image1,
+    title: 'Image 1',
     span: 'md:col-span-2 md:row-span-2',
   },
   {
     id: 2,
-    image: BrowShaping1,
-    title: 'Soft, Natural Brow Shaping',
-    category: 'Brow Shaping',
+    image: Image2,
+    title: 'Image 2',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
     id: 3,
-    image: BrowTint1,
-    title: 'Defined Brow Tinting',
-    category: 'Tinting',
+    image: Image3,
+    title: 'Image 3',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
     id: 4,
-    image: Studio1,
-    title: 'Inside Suhana Brow Bar',
-    category: 'Studio',
+    image: Image4,
+    title: 'Image 4',
     span: 'md:col-span-2 md:row-span-1',
   },
   {
     id: 5,
-    image: BrowThreading2,
-    title: 'Clean Brow Finish',
-    category: 'Threading',
+    image: Image5,
+    title: 'Image 5',
     span: 'md:col-span-1 md:row-span-2',
-  },
-  {
-    id: 6,
-    image: BrowShaping2,
-    title: 'Freshly Shaped Brows',
-    category: 'Brow Shaping',
-    span: 'md:col-span-1 md:row-span-1',
   },
 ];
 
 const Gallery = () => {
-  const [activeCategory, setActiveCategory] =
-    useState<(typeof categories)[number]>('All');
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null,
   );
-
-  const filteredData = useMemo(() => {
-    if (activeCategory === 'All') return galleryData;
-    return galleryData.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
 
   const closeLightbox = () => setSelectedImageIndex(null);
   const openLightbox = (index: number) => setSelectedImageIndex(index);
 
   const nextImage = () => {
     if (selectedImageIndex === null) return;
-    setSelectedImageIndex((prev) => ((prev ?? 0) + 1) % filteredData.length);
+    setSelectedImageIndex((prev) => ((prev ?? 0) + 1) % galleryData.length);
   };
 
   const prevImage = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex(
-      (prev) => ((prev ?? 0) - 1 + filteredData.length) % filteredData.length,
+      (prev) => ((prev ?? 0) - 1 + galleryData.length) % galleryData.length,
     );
   };
 
@@ -116,58 +86,28 @@ const Gallery = () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [selectedImageIndex, filteredData.length]);
-
-  useEffect(() => {
-    setSelectedImageIndex(null);
-  }, [activeCategory]);
+  }, [selectedImageIndex]);
 
   return (
-    <section id="gallery" className="bg-[#fdfaf8] py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.32em] text-primary/80">
-              Gallery
-            </span>
-            <h2 className="mt-4 font-serif text-4xl font-light text-primary sm:text-5xl lg:text-6xl">
-              A Closer Look at Our Work
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#6f625b] sm:text-lg">
-              From clean threading to softly defined shaping, every detail is
-              done with care, precision, and a focus on what suits you best.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat;
-
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`rounded-full cursor-pointer border px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] transition ${
-                    isActive
-                      ? 'border-primary bg-primary text-white'
-                      : 'border-[#e7d8cf] bg-white text-[#6f625b] hover:border-primary/40 hover:bg-[#faf5f1]'
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
+    <section id="gallery" className="bg-[#fdfaf8] py-16 sm:py-24 md:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-[0.32em] text-primary/80">
+            Gallery
+          </span>
+          <h2 className="mt-3 font-serif text-3xl font-light text-primary sm:text-5xl lg:text-6xl">
+            Our Work
+          </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-4 md:auto-rows-[260px]">
-          {filteredData.map((item, index) => (
+        {/* بخش گرید ریسپانسیو شده */}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-4 md:auto-rows-[260px]">
+          {galleryData.map((item, index) => (
             <button
               key={item.id}
               type="button"
               onClick={() => openLightbox(index)}
-              className={`group cursor-pointer relative w-full overflow-hidden rounded-4xl border border-[#eee3dc] bg-white text-left shadow-[0_12px_30px_rgba(61,35,21,0.05)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(61,35,21,0.08)]
-              aspect-4/5 sm:aspect-3/4 md:aspect-auto md:h-full ${item.span ?? ''}`}
-              aria-label={`Open image: ${item.title}`}
+              className={`group relative w-full h-64 sm:h-72 md:h-full cursor-pointer overflow-hidden rounded-3xl sm:rounded-4xl border border-[#eee3dc] bg-white shadow-[0_12px_30px_rgba(61,35,21,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(61,35,21,0.08)] ${item.span ?? ''}`}
             >
               <div className="relative h-full w-full">
                 <Image
@@ -175,81 +115,62 @@ const Gallery = () => {
                   alt={item.title}
                   fill
                   className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />
-              </div>
-
-              <div className="absolute inset-0 bg-linear-to-t from-[#3b2c28]/55 via-[#3b2c28]/10 to-transparent opacity-70 transition duration-500 group-hover:opacity-90" />
-
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f7e8dc]">
-                  {item.category}
-                </span>
-                <h3 className="font-serif text-2xl font-light leading-tight text-white sm:text-3xl">
-                  {item.title}
-                </h3>
               </div>
             </button>
           ))}
         </div>
       </div>
 
+      {/* بخش لایت‌باکس ریسپانسیو شده */}
       {selectedImageIndex !== null && (
         <div
-          className="fixed inset-0 z-100 flex items-center justify-center bg-[rgba(59,44,40,0.82)] px-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex flex-col sm:flex-row items-center justify-center bg-[rgba(59,44,40,0.88)] p-4 backdrop-blur-sm"
           onClick={closeLightbox}
         >
+          {/* دکمه بستن */}
           <button
             onClick={closeLightbox}
-            className="absolute cursor-pointer right-5 top-5 z-110 rounded-full border border-white/20 bg-white/10 p-3 text-white transition hover:bg-white/20"
-            aria-label="Close gallery"
+            className="absolute cursor-pointer right-4 top-4 z-50 rounded-full bg-white/10 p-2.5 text-white hover:bg-white/20 transition"
           >
-            <X size={24} />
+            <X size={20} className="sm:w-6 sm:h-6" />
           </button>
 
+          {/* دکمه قبلی */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               prevImage();
             }}
-            className="absolute left-4 z-110 rounded-full border border-white/20 bg-white/10 p-3 text-white transition hover:bg-white/20 md:left-8"
-            aria-label="Previous image"
+            className="absolute left-2 sm:left-4 z-50 cursor-pointer rounded-full bg-white/10 p-2 sm:p-3 text-white hover:bg-white/20 transition"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
           </button>
 
+          {/* دکمه بعدی */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               nextImage();
             }}
-            className="absolute cursor-pointer right-4 z-110 rounded-full border border-white/20 bg-white/10 p-3 text-white transition hover:bg-white/20 md:right-8"
-            aria-label="Next image"
+            className="absolute right-2 sm:right-4 z-50 cursor-pointer rounded-full bg-white/10 p-2 sm:p-3 text-white hover:bg-white/20 transition"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
           </button>
 
+          {/* قاب تصویر لایت‌باکس */}
           <div
-            className="relative h-[70vh] w-full max-w-5xl overflow-hidden rounded-4xl bg-[#f8f3ef] shadow-[0_30px_80px_rgba(0,0,0,0.22)]"
+            className="relative h-[60vh] sm:h-[75vh] w-full max-w-4xl overflow-hidden rounded-2xl sm:rounded-4xl bg-[#f8f3ef] p-2"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={filteredData[selectedImageIndex].image}
-              alt={filteredData[selectedImageIndex].title}
+              src={galleryData[selectedImageIndex].image}
+              alt={galleryData[selectedImageIndex].title}
               fill
-              className="object-contain"
-              sizes="(max-width: 768px) 92vw, 80vw"
+              className="object-contain p-2 sm:p-4"
               priority
             />
-
-            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-[#3b2c28]/72 to-transparent px-6 pb-6 pt-16">
-              <span className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-[#f7e8dc]">
-                {filteredData[selectedImageIndex].category}
-              </span>
-              <h3 className="mt-2 font-serif text-2xl font-light text-white sm:text-3xl">
-                {filteredData[selectedImageIndex].title}
-              </h3>
-            </div>
           </div>
         </div>
       )}
