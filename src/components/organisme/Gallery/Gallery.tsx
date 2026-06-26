@@ -8,7 +8,6 @@ import Image1 from '../../../../public/images/gallery/image1.webp';
 import Image2 from '../../../../public/images/gallery/image2.webp';
 import Image3 from '../../../../public/images/gallery/image3.webp';
 import Image4 from '../../../../public/images/gallery/image4.webp';
-import Image5 from '../../../../public/images/gallery/image5.webp';
 
 interface GalleryItem {
   id: number;
@@ -41,12 +40,6 @@ const galleryData: GalleryItem[] = [
     image: Image4,
     title: 'Image 4',
     span: 'md:col-span-2 md:row-span-1',
-  },
-  {
-    id: 5,
-    image: Image5,
-    title: 'Image 5',
-    span: 'md:col-span-1 md:row-span-2',
   },
 ];
 
